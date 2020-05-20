@@ -7,10 +7,10 @@
 }
 
 #home-top-bkgrd{
-    background-image:url(img/background/hcare1.jpg) ; 
+    background-image:url('../img/background/hcare1.jpg') ; 
     background-position: center center;
     background-size: cover; 
-    height:750px"
+    height:750px;
 }
 
 #home-top-bkgrd .container{
@@ -34,7 +34,7 @@
 }
 
 #home-profit1-bkgrd{
-    background-image:url(img/background/profit.png) ;
+    background-image:url('../img/background/profit.png') ;
     background-position: center center;
     background-size: cover;
     height:650px;
@@ -55,7 +55,7 @@
 }
 
 #home-profit2-bkgrd {
-    background-image:url(img/background/profit1.png) ;
+    background-image:url('../img/background/profit1.png') ;
     background-position: center center;
     background-size: cover; 
     height:780px; position: relative;
