@@ -2,9 +2,30 @@ import React, { Component } from 'react';
 import './App.css';
 import './assets/style/home-style.css'
 import './assets/style/form-style.css'
+import Axios from 'axios';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signinUsername: '',
+      signinPassword: '',
+
+    };
+
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+  }
+
+  handleChangeUsername(event) {
+    this.setState({signinUsername: event.target.value});
+  }
+
+  handleChangePassword(event) {
+    this.setState({signinPassword: event.target.value});
+  }
+
   componentDidMount() {
     let req = require.context("./assets/img/background", false, /.*\.jpg$/);
     req.keys().forEach(function (key) {
@@ -21,6 +42,16 @@ class App extends Component {
     // svg.keys().forEach(function (key) {
     //   req(key);
     // });
+  }
+
+  signIn (){
+    Axios.post('http://localhost:3000/api/auth/signin', {
+      'username': this.state.signinUsername,
+      'password': this.state.signinPassword
+    })
+    .then(res => {
+
+    });
   }
 
   render() {
@@ -99,7 +130,7 @@ class App extends Component {
         </section>
 
         <section id="form-modal">
-          <div className="modal fade" id="signin-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          <div className="modal fade" id="signin-form" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div className="modal-dialog" role="document">
 
@@ -116,12 +147,12 @@ class App extends Component {
                 <div className="modal-body mx-4">
 
                   <div className="md-form mb-5">
-                    <input type="email" id="Form-email1" className="form-control validate"></input>
+                    <input type='text' id="Form-email1" className="form-control validate" value={this.state.signinUsername} onChange={this.handleChangeUsername} ></input>
                     <label data-error="wrong" data-success="right" for="Form-email1">Tài khoản</label>
                   </div>
 
                   <div className="md-form pb-3">
-                    <input type="password" id="Form-pass1" className="form-control validate"></input>
+                    <input type="password" id="Form-pass1" className="form-control validate" alue={this.state.signinPassword} onChange={this.handleChangePassword} ></input>
                     <label data-error="wrong" data-success="right" for="Form-pass1">Mật khẩu</label>
                     <p className="font-small blue-text d-flex justify-content-end">Quên <a href="#"
                       className="blue-text ml-1" data-toggle="modal" data-target="#forgot-pass"
@@ -158,7 +189,7 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="modal fade" id="signup-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          <div className="modal fade" id="signup-form" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
 
             <div className="modal-dialog" role="document">
@@ -224,7 +255,7 @@ class App extends Component {
             </div>
           </div>
 
-          <div className="modal fade" id="doctor-signup-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          <div className="modal fade" id="doctor-signup-form" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div className="modal-dialog" role="document">
               <div className="modal-content form-elegant">
